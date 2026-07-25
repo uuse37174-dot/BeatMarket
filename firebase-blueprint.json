@@ -1,0 +1,124 @@
+{
+  "entities": {
+    "users": {
+      "title": "User Profile",
+      "description": "User account information including role and shop handle.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "shopkeeper", "admin"] },
+        "storeHandle": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "stores": {
+      "title": "Shop Storefront",
+      "description": "Store configuration, custom styling template, and location.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "storeName": { "type": "string" },
+        "handle": { "type": "string" },
+        "description": { "type": "string" },
+        "bannerImage": { "type": "string" },
+        "logoImage": { "type": "string" },
+        "template": { "type": "string", "enum": ["monochrome", "midnight", "boutique", "platinum", "cyber"] },
+        "sessionId": { "type": "string" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "address": { "type": "string" },
+            "city": { "type": "string" },
+            "lat": { "type": "number" },
+            "lng": { "type": "number" }
+          }
+        },
+        "phoneNumber": { "type": "string" },
+        "enable3DSwipe": { "type": "boolean" },
+        "rating": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["ownerId", "storeName", "handle"]
+    },
+    "products": {
+      "title": "Store Product",
+      "description": "Product details listed by a shopkeeper or admin.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storeId": { "type": "string" },
+        "storeHandle": { "type": "string" },
+        "storeName": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "originalPrice": { "type": "number" },
+        "category": { "type": "string" },
+        "images": { "type": "array", "items": { "type": "string" } },
+        "inventory": { "type": "number" },
+        "featured": { "type": "boolean" },
+        "location": {
+          "type": "object",
+          "properties": {
+            "address": { "type": "string" },
+            "city": { "type": "string" },
+            "lat": { "type": "number" },
+            "lng": { "type": "number" }
+          }
+        },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["storeId", "name", "price", "inventory"]
+    },
+    "orders": {
+      "title": "Customer Order",
+      "description": "Order records placed with a store.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storeId": { "type": "string" },
+        "customerUid": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerEmail": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "items": { "type": "array" },
+        "totalAmount": { "type": "number" },
+        "status": { "type": "string", "enum": ["pending", "processing", "shipped", "delivered", "cancelled"] },
+        "paymentStatus": { "type": "string" },
+        "deliveryAddress": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["storeId", "totalAmount", "status"]
+    },
+    "messages": {
+      "title": "Shopkeeper Customer Chat Message",
+      "description": "In-app communication between customer and shopkeeper.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storeId": { "type": "string" },
+        "senderId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["storeId", "senderId", "text"]
+    },
+    "siteSettings": {
+      "title": "Global Website Settings",
+      "description": "Admin configurable site logo, banner, and default theme.",
+      "type": "object",
+      "properties": {
+        "siteLogo": { "type": "string" },
+        "heroBanner": { "type": "string" },
+        "announcement": { "type": "string" }
+      }
+    }
+  }
+}

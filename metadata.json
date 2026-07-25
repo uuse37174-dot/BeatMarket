@@ -1,0 +1,6 @@
+{
+  "name": "BeatMarket",
+  "description": "Multi-layer luxury store marketplace with customizable shop templates, 3D swipe product showcases, location search, shopkeeper calls, live orders, admin session management, and Stripe checkout.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
